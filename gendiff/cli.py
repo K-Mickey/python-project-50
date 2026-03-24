@@ -2,12 +2,6 @@ import argparse
 from pathlib import Path
 
 
-class FileNotFoundError(Exception):
-    def __init__(self, file):
-        message = f'File {file} does not exist'
-        super().__init__(message)
-
-
 def main() -> tuple[Path, Path, str]:
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.',
@@ -25,12 +19,8 @@ def main() -> tuple[Path, Path, str]:
 
     args = parser.parse_args()
 
-    file1, file2, format_ = args.first_file, args.second_file, args.format
-    file1 = file1.resolve()
-    file2 = file2.resolve()
+    file_path1, file_path_2, format_ = args.first_file, args.second_file, args.format
+    file_path1 = file_path1.resolve()
+    file_path_2 = file_path_2.resolve()
 
-    for file in (file1, file2):
-        if not file.exists():
-            raise FileNotFoundError(file)
-
-    return file1, file2, format_
+    return file_path1, file_path_2, format_

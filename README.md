@@ -1,2 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/K-Mickey/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/K-Mickey/python-project-50/actions)
+
+### generate_diff
+
+_here will be asciinema_
