@@ -19,8 +19,8 @@ def main() -> tuple[Path, Path, str]:
 
     args = parser.parse_args()
 
-    file_path1, file_path_2, format_ = args.first_file, args.second_file, args.format
-    file_path1 = file_path1.resolve()
-    file_path_2 = file_path_2.resolve()
+    path1, path2, fmt = args.first_file, args.second_file, args.format
+    path1 = path1.resolve()
+    path2 = path2.resolve()
 
-    return file_path1, file_path_2, format_
+    return path1, path2, fmt
