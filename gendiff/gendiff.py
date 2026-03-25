@@ -1,13 +1,13 @@
-import json
 from pathlib import Path
 
-FILE_ENCODING = 'utf-8'
+from gendiff.file_parser import parse
+
 INTEND_WIDTH = 2
 
 
 def generate_diff(file_path1: Path, file_path2: Path) -> str:
-    file1 = read_json_file(file_path1)
-    file2 = read_json_file(file_path2)
+    file1 = parse(file_path1)
+    file2 = parse(file_path2)
 
     result = ['{']
     all_keys = sorted(file1.keys() | file2.keys())
@@ -31,11 +31,6 @@ def generate_diff(file_path1: Path, file_path2: Path) -> str:
 
     result.append('}')
     return '\n'.join(result)
-
-
-def read_json_file(file_path: Path) -> dict:
-    with open(file_path, encoding=FILE_ENCODING) as file:
-        return json.load(file)
 
 
 def format_line(key: str, value: str, sign: str = ' ') -> str:
