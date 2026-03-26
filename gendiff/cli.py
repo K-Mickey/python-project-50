@@ -1,20 +1,24 @@
 import argparse
 from pathlib import Path
 
+from gendiff.gendiff import FormatName
+
 
 def main() -> tuple[Path, Path, str]:
     parser = argparse.ArgumentParser(
-        description='Compares two configuration files and shows a difference.',
+        description="Compares two configuration files and shows a difference.",
         add_help=True,
     )
 
-    parser.add_argument('first_file', type=Path)
-    parser.add_argument('second_file', type=Path)
+    parser.add_argument("first_file", type=Path)
+    parser.add_argument("second_file", type=Path)
     parser.add_argument(
-        '-f',
-        '--format',
-        help='set format of output',
-        default='default',
+        "-f",
+        "--format",
+        help="set format of output",
+        default=FormatName.STYLISH,
+        type=FormatName,
+        choices=list(FormatName),
     )
 
     args = parser.parse_args()
