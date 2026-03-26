@@ -36,3 +36,4 @@ jobs:
             -Dsonar.projectKey=K-Mickey_python-project-50
             -Dsonar.organization=kokmickey
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.tests=tests
