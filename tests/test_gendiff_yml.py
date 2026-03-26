@@ -2,7 +2,7 @@ from pathlib import Path
 
 from gendiff import generate_diff
 
-TEST_DATA_PATH = Path("tests/test_data/gendiff_yml")
+TEST_DATA_PATH = Path("tests/test_data")
 
 
 def test_main_case():

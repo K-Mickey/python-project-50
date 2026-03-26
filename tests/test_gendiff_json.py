@@ -4,7 +4,7 @@ import pytest
 
 from gendiff import generate_diff
 
-TEST_DATA_PATH = Path("tests/test_data/gendiff_json")
+TEST_DATA_PATH = Path("tests/test_data")
 
 
 @pytest.fixture
