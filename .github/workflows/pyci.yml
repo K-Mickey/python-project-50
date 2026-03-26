@@ -36,3 +36,9 @@ jobs:
             -Dsonar.projectKey=K-Mickey_python-project-50
             -Dsonar.organization=kokmickey
             -Dsonar.python.coverage.reportPaths=coverage.xml
+
+      - name: Show coverage summary
+        run: |
+          head -20 coverage.xml
+          echo "Total lines covered:"
+          grep -o 'hits="[0-9]*"' coverage.xml | awk -F'"' '{sum+=$2} END {print sum}'
