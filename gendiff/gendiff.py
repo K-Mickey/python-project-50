@@ -3,11 +3,12 @@ from pathlib import Path
 
 from gendiff.diff_builder import get_diff
 from gendiff.file_parser import parse
-from gendiff.json_formatter import format_stylish
+from gendiff.stylish_formatter import format_stylish
 
 
 class FormatName(StrEnum):
     STYLISH = "stylish"
+    PLAIN = "plain"
 
 
 def generate_diff(
