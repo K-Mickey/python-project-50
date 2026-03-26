@@ -12,8 +12,12 @@ _here will be asciinema_
 
 _here will be asciinema with deep example_
 
+_add plain asciinema_
+
 ### generate_diff with yml
 
 _here will be asciinema_
 
 _and here will be asciinema with deep example_
+
+_add plain asciinema_

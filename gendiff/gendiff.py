@@ -3,6 +3,7 @@ from pathlib import Path
 
 from gendiff.diff_builder import get_diff
 from gendiff.file_parser import parse
+from gendiff.plain_formatter import format_plain
 from gendiff.stylish_formatter import format_stylish
 
 
@@ -28,5 +29,7 @@ def generate_diff(
     match format_name:
         case FormatName.STYLISH:
             return format_stylish(diff)
+        case FormatName.PLAIN:
+            return format_plain(diff)
         case _:
             raise ValueError(f"Unknown format: {format_name}")
