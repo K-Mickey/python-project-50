@@ -6,6 +6,14 @@
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=K-Mickey_python-project-50)](https://sonarcloud.io/summary/new_code?id=K-Mickey_python-project-50)
 
-### generate_diff
+### generate_diff with json
 
 _here will be asciinema_
+
+_here will be asciinema with deep example_
+
+### generate_diff with yml
+
+_here will be asciinema_
+
+_and here will be asciinema with deep example_
