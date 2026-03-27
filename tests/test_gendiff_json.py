@@ -37,6 +37,13 @@ def test_main_case(simple_file_path1, simple_file_path2):
     assert diff == expected_diff
 
 
+def test_empty_files():
+    file_path1 = TEST_DATA_PATH / "empty.json"
+    file_path2 = TEST_DATA_PATH / "empty.json"
+    diff = generate_diff(file_path1, file_path2)
+    assert diff == "{\n}"
+
+
 def test_identical_files(simple_file_path1):
     diff = generate_diff(simple_file_path1, simple_file_path1)
 
