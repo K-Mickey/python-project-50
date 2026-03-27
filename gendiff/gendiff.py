@@ -15,8 +15,8 @@ class FormatName(StrEnum):
 
 
 def generate_diff(
-    file_path1: Path,
-    file_path2: Path,
+    file_path1: Path | str,
+    file_path2: Path | str,
     format_name: str = FormatName.STYLISH,
 ) -> str:
 

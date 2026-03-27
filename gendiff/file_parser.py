@@ -11,7 +11,8 @@ class UnsupportedFileFormat(ValueError):
         super().__init__(f"Unsupported file format: {suffix}")
 
 
-def parse(file_path: Path) -> dict:
+def parse(file_path: Path | str) -> dict:
+    file_path = Path(file_path)
     file = file_path.read_text(encoding=FILE_ENCODING)
     return choose_parser(file_path, file)
 
