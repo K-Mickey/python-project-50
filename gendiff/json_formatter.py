@@ -19,22 +19,26 @@ def format_json(diff: list[DiffNode]) -> str:
     return json.dumps(structured_diff, indent=INDENT_SIZE)
 
 
-def _get_structure(diff: list[DiffNode]) -> list[Any]:
+def _get_structure(diff: list[DiffNode]) -> list[dict[str, Any]]:
     result = []
     for node in sorted(diff, key=attrgetter("key")):
         match node:
             case Nested(key, children):
                 nested_diff = _get_structure(children)
-                row = {"type": "nested", "key": key, "children": nested_diff}
+                node_dict = {
+                    "type": "nested",
+                    "key": key,
+                    "children": nested_diff,
+                }
 
             case Added(key, value):
-                row = {"type": "added", "key": key, "value": value}
+                node_dict = {"type": "added", "key": key, "value": value}
 
             case Removed(key, value):
-                row = {"type": "removed", "key": key, "value": value}
+                node_dict = {"type": "removed", "key": key, "value": value}
 
             case Changed(key, old_value, new_value):
-                row = {
+                node_dict = {
                     "type": "changed",
                     "key": key,
                     "old_value": old_value,
@@ -42,11 +46,11 @@ def _get_structure(diff: list[DiffNode]) -> list[Any]:
                 }
 
             case Unchanged(key, value):
-                row = {"type": "unchanged", "key": key, "value": value}
+                node_dict = {"type": "unchanged", "key": key, "value": value}
 
             case _:
                 raise ValueError(f"Unknown node type: {type(node)}")
 
-        result.append(row)
+        result.append(node_dict)
 
     return result
