@@ -23,7 +23,8 @@ def format_plain(diff: list[DiffNode], parent_name: str = "") -> str:
 
             case Nested(_, children):
                 nested_diff = format_plain(diff=children, parent_name=node_name)
-                result.append(nested_diff)
+                if nested_diff:
+                    result.append(nested_diff)
 
             case Added(_, value):
                 action = f"added with value: {_to_string(value)}"
@@ -45,11 +46,11 @@ def format_plain(diff: list[DiffNode], parent_name: str = "") -> str:
     return "\n".join(result)
 
 
-def _format_row(node_name: str, action: str):
+def _format_row(node_name: str, action: str) -> str:
     return f"Property '{node_name}' was {action}"
 
 
-def _to_string(value: Any):
+def _to_string(value: Any) -> str:
     if isinstance(value, dict):
         return "[complex value]"
 
