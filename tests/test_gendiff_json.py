@@ -49,7 +49,7 @@ def test_identical_files(simple_file_path1):
 def test_deep_tree(deep_file_path1, deep_file_path2):
     diff = generate_diff(deep_file_path1, deep_file_path2)
 
-    result_path = TEST_DATA_PATH / "result_deep_tree.txt"
+    result_path = TEST_DATA_PATH / "result_deep_tree_stylish.txt"
     expected_diff = result_path.read_text()
 
     assert diff == expected_diff
@@ -63,6 +63,19 @@ def test_plain_format(deep_file_path1, deep_file_path2):
     )
 
     result_path = TEST_DATA_PATH / "result_deep_tree_plain.txt"
+    expected_diff = result_path.read_text()
+
+    assert diff == expected_diff
+
+
+def test_json_format(deep_file_path1, deep_file_path2):
+    diff = generate_diff(
+        file_path1=deep_file_path1,
+        file_path2=deep_file_path2,
+        format_name=FormatName.JSON,
+    )
+
+    result_path = TEST_DATA_PATH / "result_deep_tree_json.txt"
     expected_diff = result_path.read_text()
 
     assert diff == expected_diff
