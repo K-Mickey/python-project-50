@@ -38,7 +38,8 @@ def format_stylish(
             case _:
                 raise ValueError(f"Unknown node type: {type(node)}")
 
-    result.append(f"{' ' * INDENT_SIZE * (level - 1)}{'}'}")
+    prev_level = level - 1
+    result.append(f"{_get_prefix(prev_level)}{'}'}")
     return "\n".join(result)
 
 
@@ -52,8 +53,8 @@ def _format_node(
     if isinstance(value, dict):
         value = _format_dict(values=value, level=level)
 
-    prefix = f"{' ' * (INDENT_SIZE * level - 2)}{sign} "
-    return f"{prefix}{key}: {value}"
+    prefix = _get_prefix(level=level, sign=sign)
+    return f"{prefix}{key}: {_to_str(value)}"
 
 
 def _format_dict(values: dict[str, Any], level: int) -> str:
@@ -69,5 +70,22 @@ def _format_dict(values: dict[str, Any], level: int) -> str:
             )
         )
 
-    rows.append(f"{' ' * INDENT_SIZE * level}{'}'}")
+    rows.append(f"{_get_prefix(level)}{'}'}")
     return "\n".join(rows)
+
+
+def _get_prefix(level: int, sign: str = "") -> str:
+    if sign:
+        sign_space = 2
+        return f"{' ' * (INDENT_SIZE * level - sign_space)}{sign} "
+    return " " * INDENT_SIZE * level
+
+
+def _to_str(value: Any) -> str:
+    if isinstance(value, bool):
+        return str(value).lower()
+
+    if value is None:
+        return "null"
+
+    return str(value)
