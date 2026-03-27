@@ -1,5 +1,5 @@
 from functools import partial
-from operator import attrgetter, itemgetter
+from operator import attrgetter
 from typing import Any
 
 from gendiff.diff_builder import (
@@ -39,7 +39,7 @@ def format_stylish(
                 raise ValueError(f"Unknown node type: {type(node)}")
 
     prev_level = level - 1
-    result.append(f"{_get_prefix(prev_level)}{'}'}")
+    result.append(f"{_indent(prev_level)}{'}'}")
     return "\n".join(result)
 
 
@@ -53,14 +53,14 @@ def _format_node(
     if isinstance(value, dict):
         value = _format_dict(values=value, level=level)
 
-    prefix = _get_prefix(level=level, sign=sign)
+    prefix = _indent(level=level, sign=sign)
     return f"{prefix}{key}: {_to_str(value)}"
 
 
 def _format_dict(values: dict[str, Any], level: int) -> str:
     rows = ["{"]
 
-    for key, value in sorted(values.items(), key=itemgetter(0)):
+    for key, value in sorted(values.items()):
         rows.append(
             _format_node(
                 key=key,
@@ -70,15 +70,17 @@ def _format_dict(values: dict[str, Any], level: int) -> str:
             )
         )
 
-    rows.append(f"{_get_prefix(level)}{'}'}")
+    rows.append(f"{_indent(level)}{'}'}")
     return "\n".join(rows)
 
 
-def _get_prefix(level: int, sign: str = "") -> str:
+def _indent(level: int, sign: str = "") -> str:
+    base_indent = INDENT_SIZE * level
+
     if sign:
         sign_space = 2
-        return f"{' ' * (INDENT_SIZE * level - sign_space)}{sign} "
-    return " " * INDENT_SIZE * level
+        return f"{' ' * (base_indent - sign_space)}{sign} "
+    return " " * base_indent
 
 
 def _to_str(value: Any) -> str:
