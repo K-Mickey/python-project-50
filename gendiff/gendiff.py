@@ -3,6 +3,7 @@ from pathlib import Path
 
 from gendiff.diff_builder import get_diff
 from gendiff.file_parser import parse
+from gendiff.json_formatter import format_json
 from gendiff.plain_formatter import format_plain
 from gendiff.stylish_formatter import format_stylish
 
@@ -10,6 +11,7 @@ from gendiff.stylish_formatter import format_stylish
 class FormatName(StrEnum):
     STYLISH = "stylish"
     PLAIN = "plain"
+    JSON = "json"
 
 
 def generate_diff(
@@ -31,5 +33,7 @@ def generate_diff(
             return format_stylish(diff)
         case FormatName.PLAIN:
             return format_plain(diff)
+        case FormatName.JSON:
+            return format_json(diff)
         case _:
             raise ValueError(f"Unknown format: {format_name}")

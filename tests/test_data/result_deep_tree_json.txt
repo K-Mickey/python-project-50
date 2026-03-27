@@ -30,30 +30,16 @@
         "value": "blah blah"
       },
       {
-        "type": "nested",
+        "type": "added",
         "key": "setting5",
-        "children": [
-          {
-            "type": "unchanged",
-            "key": "key5",
-            "value": "value5"
-          }
-        ]
+        "value": {
+          "key5": "value5"
+        }
       },
       {
         "type": "nested",
         "key": "setting6",
         "children": [
-          {
-            "type": "unchanged",
-            "key": "key",
-            "value": "value"
-          },
-          {
-            "type": "added",
-            "key": "ops",
-            "value": "vops"
-          },
           {
             "type": "nested",
             "key": "doge",
@@ -65,6 +51,16 @@
                 "new_value": "so much"
               }
             ]
+          },
+          {
+            "type": "unchanged",
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "type": "added",
+            "key": "ops",
+            "value": "vops"
           }
         ]
       }
