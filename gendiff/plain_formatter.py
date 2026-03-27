@@ -60,4 +60,7 @@ def _to_string(value: Any) -> str:
     if value is None:
         return "null"
 
-    return f"'{value}'"
+    if isinstance(value, str):
+        return f"'{value}'"
+
+    return str(value)
