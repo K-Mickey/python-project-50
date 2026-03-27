@@ -3,9 +3,7 @@ from pathlib import Path
 
 from gendiff.diff_builder import get_diff
 from gendiff.file_parser import parse
-from gendiff.json_formatter import format_json
-from gendiff.plain_formatter import format_plain
-from gendiff.stylish_formatter import format_stylish
+from gendiff.formatters import format_json, format_plain, format_stylish
 
 
 class FormatName(StrEnum):
