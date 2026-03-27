@@ -28,4 +28,4 @@ def test_format_name_error():
         with patch(
             "sys.argv", ["gendiff", "file1.json", "file2.json", "-f", "fake"]
         ):
-            _, _, format_name = main()
+            main()
